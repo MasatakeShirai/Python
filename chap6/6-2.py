@@ -16,7 +16,7 @@ print(d)
 e = a*3
 print(e)
 
-#tuple関数で空タプルを作成できる
+#tuple関数でタプルを作成できる
 print(tuple([1,2,3,'python']))
 
 #タプルの一部から作る
