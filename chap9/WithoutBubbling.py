@@ -25,12 +25,12 @@ def get_playre(name, cards):
 
         #同じカードを捨てる
         if cards.count(card)==2:
+            print('%s : discards %d'%(name, card))
             for n in range(2):
                 cards.remove(card)
 
-
-player1 = get_playre('player1', [1,2,3,4,5,6])
-player2 = get_playre('player2', [1,2,3,4,5,6])
+player1 = get_playre('player1', [1,2,3,4,5,6,7])
+player2 = get_playre('player2', [1,2,3,4,5,6,7])
 #カードを受け取る準備をする（1つ目のyield文のところで処理を止めておく）
 # デバッグにおける実行，yieldはブレークポイントのようなものか
 # https://docs.python.org/ja/3/reference/expressions.html#generator.send
