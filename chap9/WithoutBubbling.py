@@ -1,13 +1,17 @@
+import random
+
 def get_playre(name, cards):
     turn = 1
-    while True:  
+    while True: 
         if turn==1:
             #カードを受け取るまで待期(コルーチン：処理を一時停止し，外部から値を与える)
             # 参考：https://postd.cc/python-generators-coroutines-native-coroutines-and-async-await/
             card = yield
         else:
-            #カードを渡す（リストから数字をpopし，yieldで受け取る）
-            card = (yield cards.pop(0))
+            #手札からランダムにカードを渡す．カードがないときは処理を行わない
+            if len(cards)!=0:
+                PassNum = random.randint(1,len(cards))-1
+                card = (yield cards.pop(PassNum))
         
         #手札（リスト）が無くなった時にゲームに勝利する
         if len(cards)==0:
@@ -15,8 +19,8 @@ def get_playre(name, cards):
 
         #カードを手札（リスト）に入れる
         cards.append(card)
-
-        print('%s : got %s: %s'%(name,card,cards))
+        if type(card)!=list:
+            print('%s : got %s : %s'%(name,card,cards))
         turn += 1
 
         #同じカードを捨てる
@@ -25,8 +29,8 @@ def get_playre(name, cards):
                 cards.remove(card)
 
 
-player1 = get_playre('player1', [1,2,3,4])
-player2 = get_playre('player2', [1,2,3,4])
+player1 = get_playre('player1', [1,2,3,4,5,6])
+player2 = get_playre('player2', [1,2,3,4,5,6])
 #カードを受け取る準備をする（1つ目のyield文のところで処理を止めておく）
 # デバッグにおける実行，yieldはブレークポイントのようなものか
 # https://docs.python.org/ja/3/reference/expressions.html#generator.send
@@ -36,10 +40,15 @@ player2.__next__()
 
 card = 'joker'
 turn = 1
-while True:
+#while True:
+for a in range(8):
     print('%d turn----------'%turn)
-    #カードを受け取り，カードを渡す
+    #カードを受け取り，カードを渡す．
+    # 手札（リスト）が無くなった時点でループを抜ける
     card = player1.send(card)
+    if type(card)==list:
+        break
+
     card = player2.send(card)
     if type(card)==list:
         break
