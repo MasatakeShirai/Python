@@ -16,7 +16,7 @@ def get_playre(name, cards):
         #カードを手札（リスト）に入れる
         cards.append(card)
 
-        print('turn %d : %s got %s: %s'%(turn,name,card,cards))
+        print('%s : got %s: %s'%(name,card,cards))
         turn += 1
 
         #同じカードを捨てる
@@ -35,11 +35,14 @@ player1.__next__()
 player2.__next__()
 
 card = 'joker'
-for  turn in range(5):
+turn = 1
+while True:
+    print('%d turn----------'%turn)
     #カードを受け取り，カードを渡す
     card = player1.send(card)
     card = player2.send(card)
     if type(card)==list:
         break
+    turn+=1
 
-print('Game is finish %s is win!'%card[0])
+print('Game is finish. %s is win! in %d turn'%(card[0],turn))
