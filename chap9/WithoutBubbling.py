@@ -1,9 +1,9 @@
 import random
 
 def get_playre(name, cards):
-    turn = 1
+    turn = 0
     while True: 
-        if turn==1:
+        if turn==0:
             #カードを受け取るまで待期(コルーチン：処理を一時停止し，外部から値を与える)
             # 参考：https://postd.cc/python-generators-coroutines-native-coroutines-and-async-await/
             card = yield
@@ -15,12 +15,12 @@ def get_playre(name, cards):
         
         #手札（リスト）が無くなった時にゲームに勝利する
         if len(cards)==0:
-            yield [name,'win']
+            yield [name,turn]
 
         #カードを手札（リスト）に入れる
         cards.append(card)
         if type(card)!=list:
-            print('%s : got %s : %s'%(name,card,cards))
+            print('%s : get %s : %s'%(name,card,cards))
         turn += 1
 
         #同じカードを捨てる
@@ -54,4 +54,4 @@ for a in range(8):
         break
     turn+=1
 
-print('Game is finish. %s is win! in %d turn'%(card[0],turn))
+print('Game is finish. %s is win! in %d turn'%(card[0],card[1]))
