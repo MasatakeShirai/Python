@@ -13,16 +13,17 @@ def get_playre(name, cards):
         if len(cards)==0:
             yield [name,'win']
 
-        #カードを受け取る
+        #カードを手札（リスト）に入れる
         cards.append(card)
+
+        print('turn %d : %s got %s: %s'%(turn,name,card,cards))
+        turn += 1
 
         #同じカードを捨てる
         if cards.count(card)==2:
             for n in range(2):
                 cards.remove(card)
 
-        print('turn %d : %s got %s: %s'%(turn,name,card,cards))
-        turn += 1
 
 player1 = get_playre('player1', [1,2,3,4])
 player2 = get_playre('player2', [1,2,3,4])
@@ -37,11 +38,8 @@ card = 'joker'
 for  turn in range(5):
     #カードを受け取り，カードを渡す
     card = player1.send(card)
- #   if type(card)==list:
- #       break
-
     card = player2.send(card)
     if type(card)==list:
         break
 
-print('Game is finish')
+print('Game is finish %s is win!'%card[0])
