@@ -27,4 +27,3 @@ f = tempfile.NamedTemporaryFile(dir='.')
 print(f.name)
 f.close()
 print(os.path.exists(f.name))
-
