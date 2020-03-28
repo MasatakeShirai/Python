@@ -110,7 +110,10 @@ print(os.chmod('1.txt',0o700))
 
 #環境変数の取得
 # osモジュールのenviron変数に様々な環境変数が辞書型で格納されている
-print(os.environ.get('PATH'))
+path=os.environ.get('PATH')
+for i in path.split(';'):
+    print(i)
 
+#最後に作成したフォルダ・ディレクトリを削除
 os.chdir('..')
 shutil.rmtree('tmp')
