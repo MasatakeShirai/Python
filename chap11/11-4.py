@@ -112,6 +112,8 @@ print(os.chmod('1.txt',0o700))
 # osモジュールのenviron変数に様々な環境変数が辞書型で格納されている
 path=os.environ.get('PATH')
 for i in path.split(';'):
+    if i=='.':
+        break
     print(i)
 
 #最後に作成したフォルダ・ディレクトリを削除
