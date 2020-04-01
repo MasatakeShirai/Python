@@ -11,7 +11,9 @@ def accepts(*types):
             for arg, type_ in zip(args, types):
                 #isinstanceは第1引数にオブジェクト，第二引数に型名を取る
                 if not isinstance(arg, type_):
-                    raise TypeError('%s -> %s'%(arg, type_))                    
+                    raise TypeError('%s -> %s'%(arg, type_))
+                else:
+                    print('OK: %s->%s'%(arg, type_))                    
             return f(*args, **kwds)
         return new_f
     return _accepts
