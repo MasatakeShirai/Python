@@ -15,5 +15,4 @@ if __name__ == "__main__":
 # 最初の要素はファイル名になる
     import sys
     print(sys.argv)
-
     
