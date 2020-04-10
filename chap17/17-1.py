@@ -36,7 +36,7 @@ print(pattern.match('PHP, python, C'))
 print(pattern.sub('py', 'python, Java, C'))
 
 #修飾子
-# 正規表現修飾子とは正規表現ぱｗの判定を変更するためのオプション．compileの引数として利用できる
+# 正規表現修飾子とは正規表現パターンの判定を変更するためのオプション．compileの引数として利用できる
 # 大文字小文字を区別しない
 pattern = re.compile('[a-z]',re.I)
 print(pattern.sub('*', 'abC-dEf'))
